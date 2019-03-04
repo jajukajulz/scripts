@@ -5,3 +5,4 @@
 1. **03_mailparse.py**: extract email sender name, surname and email address from source eml files
 1. **04_extractattachments.py**: extract attachment files from source eml files
 1. **05_bulk_image_downloader.py**: download images from the internet using a source csv filelist
+1. **06_tomcat.py**: script to start / stop / restart tomcat
