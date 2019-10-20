@@ -1,8 +1,15 @@
-## Random Python scripts
+# scripts
+scripts is a repo with a collection of various scripts (mostly Python) for tasks ranging from starting/stopping a tomcat server to bulk image downloads.
 
-1. **01_copy_attachments.py**: bulk copy files from source to destination as specified in csv file
-1. **02_patchchecker.py**: check for patched source code files with a specific extension
-1. **03_mailparse.py**: extract email sender name, surname and email address from source eml files
-1. **04_extractattachments.py**: extract attachment files from source eml files
-1. **05_bulk_image_downloader.py**: download images from the internet using a source csv filelist
-1. **06_tomcat.py**: script to start / stop / restart tomcat
+## Table of Contents
+- [01_copy_attachments.py](https://github.com/jajukajulz/scripts/blob/master/scripts/01_copy_attachments.py): bulk copy files from source to destination as specified in csv file
+- [02_patchchecker.py](https://github.com/jajukajulz/scripts/blob/master/scripts/02_patchchecker.py): check for patched source code files with a specific extension
+- [03_mailparse.py](https://github.com/jajukajulz/scripts/blob/master/scripts/03_mailparse.py): extract email sender name, surname and email address from source eml files
+- [04_extractattachments.py](https://github.com/jajukajulz/scripts/blob/master/scripts/04_extractattachments.py): extract attachment files from source eml files
+- [05_bulk_image_downloader.py](https://github.com/jajukajulz/scripts/blob/master/scripts/05_bulk_image_downloader.py): download images from the internet using a source csv filelist
+- [06_tomcat.py](https://github.com/jajukajulz/scripts/blob/master/scripts/06_tomcat.py): download images from the internet using a source csv filelist
+- [07_postgres.py](https://github.com/jajukajulz/scripts/blob/master/scripts/07_postgres.py): script to start / stop / restart Postgres
+- [08_mysql.py](https://github.com/jajukajulz/scripts/blob/master/scripts/08_mysql.py): script to start / stop / restart MySQL Server
+- [09_SA_University_List.md](https://github.com/jajukajulz/scripts/blob/master/scripts/09_SA_University_List.md): HTML Dropdown with SA University List
+
+
