@@ -1,3 +1,8 @@
+Title:       HTML Dropdown with SA University List  
+Author:      Julian Kanjere  
+Date:        September 2019
+
+
 ## HTML Dropdown with SA University List
 ```
 <select>
