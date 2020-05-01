@@ -11,5 +11,9 @@ scripts is a repo with a collection of various scripts (mostly Python) for tasks
 - [07_postgres.py](https://github.com/jajukajulz/scripts/blob/master/scripts/07_postgres.py): script to start / stop / restart Postgres
 - [08_mysql.py](https://github.com/jajukajulz/scripts/blob/master/scripts/08_mysql.py): script to start / stop / restart MySQL Server
 - [09_SA_University_List.md](https://github.com/jajukajulz/scripts/blob/master/scripts/09_SA_University_List.md): HTML Dropdown with SA University List
+- [10_huawei_lte_modem.py](https://github.com/jajukajulz/scripts/blob/master/scripts/10_huawei_lte_modem.py): Script for changing network band on a Huawei router
+- [11_tplink_lte_modem.py](https://github.com/jajukajulz/scripts/blob/master/scripts/11_tplink_lte_modem.py): Script for rebooting and getting stats from a TPLINK router
+- [12_remove_docker_unix.sh](https://github.com/jajukajulz/scripts/blob/master/scripts/12_remove_docker_unix.sh): Script for removing docker and related images
+- [13_pandas_to_excel.py](https://github.com/jajukajulz/scripts/blob/master/scripts/13_pandas_to_excel.py): Saving to excel using Pandas Dataframes
 
 
