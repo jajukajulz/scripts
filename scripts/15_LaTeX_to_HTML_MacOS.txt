@@ -1,0 +1,53 @@
+Original source - https://gist.github.com/gaurav/1475883/4dd7a2a9fb4b7a6ddfd9584f422b0a180ff3ad05
+1. Find your texbin directory. This is usually /usr/texbin, which is symlinked to wherever the actual directory is.
+2. Add it to your PATH (i.e. `# export PATH=/usr/texbin:$PATH`)
+3. Run the 'htlatex' command. This will convert your LaTeX file into an HTML document. Note that this really just a script around normal LaTeX, so you'll have to do the usual things (htlatex -> bibtex -> htlatex for citations, htlatex -> htlatex for references). I think: I had my LaTeX all PDF-LaTeXed and ready to go, so all the .bib/.toc/etc. files had already been created.
+4. At this point, you have an HTML file. Check it and make sure it's good enough.
+
+5. Open the HTML file in TextEdit. Oddly enough, Pages can't open HTML files, but TextEdit can. Go figure.
+6. TextEdit can now save your file as an RTF or Doc file.
+7. Success!
+
+
+tex4ht is a system for conversion from TeX to many different output formats, such as HTML, ODT or Epub.
+The system consists from several different programs, which are executed by a compilation script.
+The basic compilation script is htlatex which has been superseded by make4ht.
+
+Locate texbin directory e.g. /Library/TeX/texbin/
+Confirm make4ht is in the texbin location otherwise install via Tex Live Utility or Commandline (tlmgr)
+$sudo tlmgr install make4ht luaxml tex4ht environ
+
+
+Add texbin location to PATH variable
+`$export PATH=/Library/TeX/texbin:$PATH`
+
+Run conversion to HTML
+$make4ht mydocument.tex # generate HTML
+
+To create MS WORD DOCX, first convert to ODT then from ODT save as DOCX (ODT is LibreOffice in Ubuntu)
+For Word inclusion, it is best to use the ODT format, which can keep some features like footnotes. Word can handle this format,
+but it's support is buggy, so it is best to convert the ODT files to DOCX using LibreOffice.
+$make4ht -f odt filename.tex
+
+Previously when htlatex was used
+`$htlatex mydocument.tex` # generate HTML
+
+
+=================
+Alternatively, use PANDOC (the free and open-source document converter)
+
+Here's how.  Assume I've written something "myTexFile.tex" with an accompanying bibliography "myTexBiblio.bib" file.  On the command line:
+
+pandoc mydocument.tex -f latex -t html -s -o myHtmlFile.html --bibliography mydocumentBiblio.bib
+
+The args:
+
+    -f source format (LaTeX)
+
+    -ttarget format (HTML)
+
+    -s 'standalone' HTML file
+
+    -o output filename
+
+    --bibliography  .bib file for the citations used in mydocument.tex
