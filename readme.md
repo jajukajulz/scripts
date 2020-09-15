@@ -15,5 +15,6 @@ scripts is a repo with a collection of various scripts (mostly Python) for tasks
 - [11_tplink_lte_modem.py](https://github.com/jajukajulz/scripts/blob/master/scripts/11_tplink_lte_modem.py): Script for rebooting and getting stats from a TPLINK router
 - [12_remove_docker_unix.sh](https://github.com/jajukajulz/scripts/blob/master/scripts/12_remove_docker_unix.sh): Script for removing docker and related images
 - [13_pandas_to_excel.py](https://github.com/jajukajulz/scripts/blob/master/scripts/13_pandas_to_excel.py): Saving to excel using Pandas Dataframes
-
+- [14_minimal_cv_example_latex.tex](https://github.com/jajukajulz/scripts/blob/master/scripts/14_minimal_cv_example_latex.tex): Minimal LaTeX CV Example from http://texblog.org
+- [15_LaTeX_to_HTML_MacOS.txt](https://github.com/jajukajulz/scripts/blob/master/scripts/15_LaTeX_to_HTML_MacOS.txt): Converting LaTeX document to HTML (then Word i.e. DOCX)
 
