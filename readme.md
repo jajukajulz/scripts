@@ -17,4 +17,5 @@ scripts is a repo with a collection of various scripts (mostly Python) for tasks
 - [13_pandas_to_excel.py](https://github.com/jajukajulz/scripts/blob/master/scripts/13_pandas_to_excel.py): Saving to excel using Pandas Dataframes
 - [14_minimal_cv_example_latex.tex](https://github.com/jajukajulz/scripts/blob/master/scripts/14_minimal_cv_example_latex.tex): Minimal LaTeX CV Example from http://texblog.org
 - [15_LaTeX_to_HTML_MacOS.txt](https://github.com/jajukajulz/scripts/blob/master/scripts/15_LaTeX_to_HTML_MacOS.txt): Converting LaTeX document to HTML (then Word i.e. DOCX)
+- [16_bulk_file_rename.py](https://github.com/jajukajulz/scripts/blob/master/scripts/16_bulk_file_rename.py): Rename files in folder via mapping defined in Excel file
 
