@@ -23,8 +23,9 @@ FILEPATH_CURRENT_DIRECTORY = os.getcwd() # folder of current python script
 FILE_SUBMISSION_PREFIX = 'list_of_filenames_'
 FILE_EXT_XLSX = '.xlsx'
 EXCEL_SHEET_NAME = 'FilenameSheet'
-COLUMN_HEADERS = ['Old Name', 'New Name']
+COLUMN_HEADERS = ['Old Name', 'New Name', 'LastName1', 'LastName2', 'YYYY', 'ShortTitle', 'Journal']
 FILES_TO_IGNORE = ['.DS_Store'] #ignore list
+#FORMAT = 'LastName1LastName2_YYYY_ShortTitle-Journal.pdf'
 
 def setup_logging(options):
     try:
@@ -59,8 +60,19 @@ def read_files(options):
     # sort the filenames in ascending order
     old_filenames.sort()
 
+    # convert to lowercase
+    old_filenames = [x.lower() for x in old_filenames]
+
+    # suggested list of filenames
+    suggested_filenames = [x.replace(" ", "_") for x in old_filenames]
+
     filename_data = pd.DataFrame({COLUMN_HEADERS[0]: old_filenames,
-                                  COLUMN_HEADERS[1]: None,
+                                  COLUMN_HEADERS[1]: '',
+                                  COLUMN_HEADERS[2]: '',
+                                  COLUMN_HEADERS[3]: '',
+                                  COLUMN_HEADERS[4]: '',
+                                  COLUMN_HEADERS[5]: suggested_filenames,
+                                  COLUMN_HEADERS[6]: '',
                               })[COLUMN_HEADERS]
 
     timestr = time.strftime('%Y%m%d-%H%M%S')
