@@ -15,6 +15,7 @@ import os
 import logging
 import sys
 import optparse
+import shutil
 
 
 ### DEFINE INITIAL CONSTANTS ###
@@ -25,8 +26,11 @@ FILE_EXT_XLSX = '.xlsx'
 EXCEL_SHEET_NAME = 'FilenameSheet'
 COLUMN_HEADERS = ['Old Name', 'New Name', 'LastName1', 'LastName2', 'YYYY', 'ShortTitle', 'Journal']
 FILES_TO_IGNORE = ['.DS_Store'] #ignore list
-#FORMAT = 'LastName1LastName2_YYYY_ShortTitle-Journal.pdf'
+BACKUP_SUFFIX = '_backup'
+TIMESTR = time.strftime('%Y%m%d-%H%M%S')
+#FORMAT = 'LastName1LastName2_YYYY_ShortTitle-Journal.pdf' e.g. gansscottstern_2018_entrepreneurialstrategy-hbr
 
+### SETUP LOGGING ###
 def setup_logging(options):
     try:
         loglevel = getattr(logging, options.loglevel.upper())
@@ -35,14 +39,36 @@ def setup_logging(options):
         logging.getLogger().setLevel(logging.DEBUG)
         logging.error("Unknown logging level '%s', switching to DEBUG loglevel." % options.loglevel)
 
+### CONFIRM ARGUMENTS ARE SET CORRECTLY ###
 def check_arguments(options):
     if options.path == '':
         logging.error('Source directory not supplied. Exiting')
+        sys.exit()
+    if not os.path.isdir(options.path):
+        logging.error('Source directory (%s) does not exist or is invalid. Exiting' % options.path)
         sys.exit()
     if options.mode == 'rename':
         if options.mapping_file == '':
             logging.error('Mapping not supplied. Exiting')
             sys.exit()
+
+### BACKUP FOLDER BEFORE RENAMING ###
+def backup_folder(options):
+    logging.info('Backing up folder (%s) before renaming files.' % options.path)
+    bool_success = True
+    # Split the path in head and tail pair
+    head_tail = os.path.split(options.path)
+    backup_path = os.path.abspath(os.path.join(options.path,"../"))
+    backup_name = head_tail[1] + BACKUP_SUFFIX + "_" + TIMESTR
+    backup_location = os.path.join(backup_path, backup_name)
+    logging.info('Backup location %s ' % backup_location)
+    try:
+        shutil.copytree(options.path, backup_location)
+        logging.info('Backing up folder (%s) successful.' % options.path)
+        return bool_success
+    except:
+        logging.error("An exception occurred")
+        return not bool_success
 
 ### READ FILE LIST ON DISK AND EXPORT TO EXCEL ###
 def read_files(options):
@@ -63,8 +89,8 @@ def read_files(options):
     # convert to lowercase
     old_filenames = [x.lower() for x in old_filenames]
 
-    # suggested list of filenames
-    suggested_filenames = [x.replace(" ", "_") for x in old_filenames]
+    # suggested list of filenames - replace blanks with underscore and split once on dot.
+    suggested_filenames = [x.replace(" ", "_").rsplit('.', 1)[0] for x in old_filenames]
 
     filename_data = pd.DataFrame({COLUMN_HEADERS[0]: old_filenames,
                                   COLUMN_HEADERS[1]: '',
@@ -75,8 +101,8 @@ def read_files(options):
                                   COLUMN_HEADERS[6]: '',
                               })[COLUMN_HEADERS]
 
-    timestr = time.strftime('%Y%m%d-%H%M%S')
-    filename = FILE_SUBMISSION_PREFIX + timestr + FILE_EXT_XLSX
+
+    filename = FILE_SUBMISSION_PREFIX + TIMESTR + FILE_EXT_XLSX
     fullfilename = os.path.join(FILEPATH_CURRENT_DIRECTORY, filename)
     logging.info('Excel filename %s' %  fullfilename)
     filename_data.to_excel(fullfilename, sheet_name=EXCEL_SHEET_NAME)
@@ -126,16 +152,22 @@ def rename_files(options):
                           (excel_data_df[COLUMN_HEADERS[1]].isnull().sum()))
             sys.exit()
 
-        logging.info('Renaming filenames starting - ' + options.path + ' ' + options.mapping_file)
+        # backup folder before renaming files
+        backup_status = backup_folder(options)
 
-        for count, new_name_entry in enumerate(excel_data_df_new_filenames):
-            old_name_entry = excel_data_df_orig_filenames[count]
-            old_name_fullpath = join(options.path, old_name_entry)
-            if isfile(old_name_fullpath):
-                os.rename(old_name_fullpath, join(options.path, new_name_entry))
-            else:
-                logging.info('Skipping %s as it is not a valid file' % old_name_fullpath)
-        logging.info('Renaming filenames finished')
+        if backup_status:
+            logging.info('Renaming filenames starting - ' + options.path + ' ' + options.mapping_file)
+
+            for count, new_name_entry in enumerate(excel_data_df_new_filenames):
+                old_name_entry = excel_data_df_orig_filenames[count]
+                old_name_fullpath = join(options.path, old_name_entry)
+                if isfile(old_name_fullpath):
+                    os.rename(old_name_fullpath, join(options.path, new_name_entry))
+                else:
+                    logging.info('Skipping %s as it is not a valid file' % old_name_fullpath)
+            logging.info('Renaming filenames finished')
+        else:
+            logging.info('Backup was unsuccessful. Exiting')
     else:
         logging.error('Invalid file or file does not exist - %s. Exiting' % full_filename)
         sys.exit()
@@ -165,5 +197,8 @@ if __name__ == '__main__':
         rename_files(options)
     elif options.mode=='read':
         read_files(options)
+
+    logging.info('File Operations complete. Goodbye')
+    sys.exit()
 
 
