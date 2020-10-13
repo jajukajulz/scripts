@@ -1,0 +1,56 @@
+When MBP lid is closed or sleeping, the SD Card (e.g. JetDrive 256GB) can be rejected and require re-mounting. To prevent this, change the disksleep value (which is in seconds). 
+
+pmset is a command line utility to manipulate power management 
+
+Step 1 - Check values
+$ sudo pmset -g
+
+System-wide power settings:
+Currently in use:
+ standbydelaylow      10800
+ standby              1
+ womp                 1
+ halfdim              1
+ hibernatefile        /var/vm/sleepimage
+ powernap             1
+ gpuswitch            2
+ networkoversleep     0
+ disksleep            0
+ standbydelayhigh     86400
+ sleep                0 (sleep prevented by sharingd)
+ autopoweroffdelay    28800
+ hibernatemode        3
+ autopoweroff         0
+ ttyskeepawake        1
+ displaysleep         30
+ highstandbythreshold 50
+ acwake               0
+ lidwake              1
+ 
+Step 2 - Update diskleep
+$ sudo pmset -a disksleep 1410065408
+
+Step 3 - Check values again
+$ sudo pmset -g
+
+System-wide power settings:
+Currently in use:
+ standbydelaylow      10800
+ standby              1
+ womp                 1
+ halfdim              1
+ hibernatefile        /var/vm/sleepimage
+ powernap             1
+ gpuswitch            2
+ networkoversleep     0
+ disksleep            1410065408
+ standbydelayhigh     86400
+ sleep                0 (sleep prevented by sharingd)
+ autopoweroffdelay    28800
+ hibernatemode        3
+ autopoweroff         0
+ ttyskeepawake        1
+ displaysleep         30
+ highstandbythreshold 50
+ acwake               0
+ lidwake              1
