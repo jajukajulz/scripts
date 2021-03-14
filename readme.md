@@ -20,4 +20,5 @@ scripts is a repo with a collection of various scripts (mostly Python) for tasks
 - [16_bulk_file_rename.py](https://github.com/jajukajulz/scripts/blob/master/scripts/16_bulk_file_rename.py): Rename files in folder via mapping defined in Excel file
 - [17_Prevent_SDCARD_From_Sleeping_MacOS.txt](https://github.com/jajukajulz/scripts/blob/master/scripts/17_Prevent_SDCARD_From_Sleeping_MacOS.txt): Prevent re-mounting memory card on MacBook Pro after sleeping
 - [18_MacOS_mouse_scaling.sh](https://github.com/jajukajulz/scripts/blob/master/scripts/18_MacOS_mouse_scaling.sh): Script to update MacOS mouse speed from terminal
+- [19_excel_to_sql.py](https://github.com/jajukajulz/scripts/blob/master/scripts/19_excel_to_sql.py): Script to populate a SQL database (SQL Server/MySQL/PostgreSQL/SQLite) after reading from Excel file
 
