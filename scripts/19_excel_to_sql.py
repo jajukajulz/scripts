@@ -4,6 +4,19 @@
 # Usage: $python3 19_excel_to_sql.py
 # Requirements: pandas ($pip3 install pandas)
 
+'''
+Structure of sheet Number 1 in Excel file (although not used in this script):
+database	TestDB2
+table	employee
+
+Structure of sheet Number 2 in Excel file:
+Name    Salary  Gender  DeptID
+Pauline	620,1	F	    3
+Tafi	460,2	M	    1
+Keith	400,05	M	    2
+Sharon	560,01	F	    4
+'''
+
 ### IMPORT LIBRARIES ###
 import pandas as pd
 import os
