@@ -1,4 +1,4 @@
-# scripts
+                                # scripts
 scripts is a repo with a collection of various scripts (mostly Python) for tasks ranging from starting/stopping a tomcat server to bulk image downloads.
 
 ## Table of Contents
@@ -21,4 +21,5 @@ scripts is a repo with a collection of various scripts (mostly Python) for tasks
 - [17_Prevent_SDCARD_From_Sleeping_MacOS.txt](https://github.com/jajukajulz/scripts/blob/master/scripts/17_Prevent_SDCARD_From_Sleeping_MacOS.txt): Prevent re-mounting memory card on MacBook Pro after sleeping
 - [18_MacOS_mouse_scaling.sh](https://github.com/jajukajulz/scripts/blob/master/scripts/18_MacOS_mouse_scaling.sh): Script to update MacOS mouse speed from terminal
 - [19_excel_to_sql.py](https://github.com/jajukajulz/scripts/blob/master/scripts/19_excel_to_sql.py): Script to populate a SQL database (SQL Server/MySQL/PostgreSQL/SQLite) after reading from Excel file
+- [20_python_web_scraping.ipynb](https://github.com/jajukajulz/scripts/blob/master/scripts/20_python_web_scraping.ipynb): Jupyter notebook illustrating how to perform web scraping using Python (launch notebook server using command `jupyter notebook` from your terminal)
 
